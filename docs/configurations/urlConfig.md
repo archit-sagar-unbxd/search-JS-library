@@ -179,7 +179,7 @@ The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`
 
 {: .important }
 > - If the value given by the user is not an allowed value, the default value will be selected.
-> - The value of `queryParamSeparator` should not be the same as `facetParam.multiValueSeparator`.
+> - The value of `queryParamSeparator` should not be the same as `multiValueSeparator`.
 
 
 ---
@@ -922,7 +922,7 @@ url:{
 | `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER` |
 | `multiValueSeparator`  | string   | `,` | Allowed Values: `&`, `~`, `^`, `,`, `-`, `_`, `:`, `;`, `|`, `$`, `@` |
 | `keyReplacer`|  object  | No default - empty object |  Example: `keyReplacer: { "color_uFilter": "color" , "size_uFilter": "size" }` |
-| `valueReplacer`| object   | No default - emoty object| Example: `valueReplacer: {"size_uFilter": { "xs": "extra-small" } }`|
+| `valueReplacer`| object   | No default - empty object| Example: `valueReplacer: {"size_uFilter": { "xs": "extra-small" } }`|
 | `facetsOrderInUrl`| array   | No default - empty array| Example: `facetsOrderInUrl: [ "color_uFilter", "size_uFilter", "gender_uFilter" ]` |
 | `rangeFacets`| array   | No default- empty array|  Example: `rangeFacets: [ "price", "salePrice" ]` | 
 | `rangeSeparator`| string   |  `-`  | Allowed Values: ["-"]|

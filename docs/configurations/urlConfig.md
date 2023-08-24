@@ -143,15 +143,15 @@ Array
 
 This configuration manages the arrangement of query parameters in URLs. It enforces a consistent order for query parameters across the website, enhancing URL uniformity and potentially improving caching efficiency. By maintaining a standardized parameter order, URL comparability is simplified and caching systems can recognize identical URLs more effectively.
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
 **Default Value**
 
 ```js
 seoFriendlyUrl: true, 
 orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"]
 ```
-
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ---
 
@@ -162,6 +162,9 @@ String
 {: .label }
 
 This setting defines the delimiter used to separate individual query parameters within a URL. It allows customization of the character used to distinguish between distinct parameters, influencing how URLs are parsed and processed. 
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 **Default Value**
 
@@ -175,10 +178,9 @@ queryParamSeparator: "&"
 The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`, `":"`, `";"`, `"|"`, `"$"`, `"@"`
 
 {: .important }
-> If the value given by the user is not an allowed value, the default value will be selected.
+> - If the value given by the user is not an allowed value, the default value will be selected.
+> - The value of `queryParamSeparator` should not be the same as `facetParam.multiValueSeparator`.
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ---
 
@@ -186,6 +188,9 @@ The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`
 {: .d-inline-block}
 
 This will be the default query param for the search api to provide category information like category path or category id. 
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 **Sample Code**
 ```js
@@ -216,8 +221,6 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `p`             | Examples: `p`, `browse`                          |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -289,6 +292,9 @@ www.example.com/washingMachine?browse=categoryPath%253A%2522LAUNDRY%253EWASHING%
 
 This will be the default query param for the search api to provide the query information. 
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
 **Sample Code**
 ```js
 url:{
@@ -319,8 +325,6 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `q`             | Examples: `q`, `query`                           |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -387,7 +391,10 @@ www.example.com?query=black+jeans
 ```
 ---
 ## pageNoParam
-The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
+The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK.
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 **Sample Code:**
 ```js
@@ -422,8 +429,6 @@ url: {
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`    |
 | `keyReplacer` | string   | `start`         | Examples: `start`, `pageNumber`                    |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -537,7 +542,10 @@ www.example.com?page=1
 ---
 
 ## pageSizeParam
-The `pageSizeParam` configuration allows you to control the number of products fetched in each API call within the Unbxd search SDK. This feature is particularly useful in tailoring the browsing experience for users by determining how many products are displayed on a single page. The configuration consists of the following options:
+The `pageSizeParam` configuration allows you to control the number of products fetched in each API call within the Unbxd search SDK. This feature is particularly useful in tailoring the browsing experience for users by determining how many products are displayed on a single page. 
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 **Sample Code**
 ```js
@@ -569,8 +577,6 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `rows`          | Examples: `rows`, `products`                     |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -641,6 +647,9 @@ www.example.com?products=12
 
 In this `sortParam` configuration, sorting preferences are managed effectively by tailoring the URL structure according to user selections. By configuring the `sortParam` options, you ensure both flexibility and user-friendly sorting experiences on your e-commerce site.
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
 **Sample Code**
 ```js
 url:{
@@ -676,8 +685,6 @@ url:{
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Examples: `valueReplacer: { "price desc": "price desc", "price asc": "price asc" }`                                        |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -752,6 +759,9 @@ www.example.com?order=desc
 
 In this configuration, product view preferences are effectively managed by tailoring the URL structure according to user selections. By configuring the `pageViewParam` options, you ensure an enhanced browsing experience for users on your e-commerce site, allowing them to choose between list view and grid view as per their preference.
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
 **Sample Code**
 ```js
 url:{
@@ -787,8 +797,6 @@ url:{
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: `valuesReplacer: { "GRID": "G", "LIST": "L" }`                      |
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -863,6 +871,9 @@ www.example.com?pageView=G
 
 facetsParam configurations gives user the flexibility to customize how selected facets string look in the url.
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
 **Sample Code**
 ```js
 url:{
@@ -916,8 +927,6 @@ url:{
 | `rangeFacets`| array   | No default- empty array|  Example: `rangeFacets: [ "price", "salePrice" ]` | 
 | `rangeSeparator`| string   |  `-`  | Allowed Values: ["-"]|
 
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  

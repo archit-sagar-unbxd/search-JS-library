@@ -12,7 +12,7 @@ This feature ensures both data persistence and readability within the Unbxd SDK'
 
 
 {: .important }
-> This set of configurations is not present in versions `2.0.39` and before.  
+> SEO Friendly URL is available from `2.0.40` and above.  
 
 
 # Table of contents
@@ -146,8 +146,12 @@ This configuration manages the arrangement of query parameters in URLs. It enfor
 **Default Value**
 
 ```js
+seoFriendlyUrl: true, 
 orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"]
 ```
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ---
 
@@ -162,6 +166,7 @@ This setting defines the delimiter used to separate individual query parameters 
 **Default Value**
 
 ```js
+seoFriendlyUrl: true, 
 queryParamSeparator: "&"
 ```
 
@@ -171,6 +176,9 @@ The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`
 
 {: .important }
 > If the value given by the user is not an allowed value, the default value will be selected.
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ---
 
@@ -182,6 +190,7 @@ This will be the default query param for the search api to provide category info
 **Sample Code**
 ```js
 url:{
+    seoFriendlyUrl: true, 
     // other URL configurations...
     browseQueryParam: {
         addToUrl: true,
@@ -196,8 +205,7 @@ url:{
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
-
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 ### Configurations
 {: .d-inline-block }
@@ -208,6 +216,8 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `p`             | Examples: `p`, `browse`                          |
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -219,6 +229,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     browseQueryParam: { 
        addToUrl: false
@@ -231,12 +242,13 @@ url: {
 www.example.com/washingMachine
 ```
 ---
-### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+### Usecase 2: Default Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     browseQueryParam: { 
        addToUrl: true,
@@ -250,12 +262,13 @@ url: {
 www.example.com/washingMachine?p=categoryPath%253A%2522LAUNDRY%253EWASHING%2520MACHINES%2522
 ```
 ---
-### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+### Usecase 3: Custom Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     browseQueryParam: { 
        addToUrl: true,
@@ -279,6 +292,7 @@ This will be the default query param for the search api to provide the query inf
 **Sample Code**
 ```js
 url:{
+    seoFriendlyUrl: true, 
     // other URL configurations...
     searchQueryParam: {
         addToUrl: true,
@@ -293,7 +307,7 @@ url:{
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 
 ### Configurations
@@ -305,6 +319,8 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `q`             | Examples: `q`, `query`                           |
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -316,6 +332,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     searchQueryParam: { 
        addToUrl: false
@@ -328,12 +345,13 @@ url: {
 www.example.com?
 ```
 ---
-### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+### Usecase 2: Default Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     searchQueryParam: { 
        addToUrl: true,
@@ -347,12 +365,13 @@ url: {
 www.example.com?q=black+jeans
 ```
 ---
-### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+### Usecase 3: Custom Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     searchQueryParam: { 
        addToUrl: true,
@@ -373,6 +392,7 @@ The `pageNoParam` configuration defines how pagination data is managed in the UR
 **Sample Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -388,7 +408,7 @@ url: {
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
-3. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 4. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
 
 
@@ -402,7 +422,8 @@ url: {
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`    |
 | `keyReplacer` | string   | `start`         | Examples: `start`, `pageNumber`                    |
 
-
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -414,6 +435,7 @@ url: {
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: false
@@ -426,12 +448,13 @@ url: {
 www.example.com?
 ```
 ---
-### Usecase 2: URL containing product index as Page Number with `algo = "DEFAULT"`.
+### Usecase 2: Default Usecase with Index as PageNo.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -446,12 +469,13 @@ url: {
 www.example.com?start=0
 ```
 ---
-### Usecase 3: URL containing page numbers with `algo = "DEFAULT"`.
+### Usecase 3: Default Usecase with Page Numbers as PageNo.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -466,12 +490,13 @@ url: {
 www.example.com?start=1
 ```
 ---
-### Usecase 4: URL containing product index as Page Number with `algo = "KEY_VALUE_REPLACER"`.
+### Usecase 4: Custom Usecase with Index as PageNo.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -487,12 +512,13 @@ url: {
 www.example.com?page=0
 ```
 ---
-### Usecase 5: URL containing page numbers with `algo = "KEY_VALUE_REPLACER"`.
+### Usecase 5: Custom Usecase with Page Numbers as PageNo.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -516,6 +542,7 @@ The `pageSizeParam` configuration allows you to control the number of products f
 **Sample Code**
 ```js
 url:{
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageSizeParam: {
         addToUrl: true,
@@ -530,7 +557,7 @@ url:{
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 
 ### Configurations
@@ -542,6 +569,8 @@ url:{
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `rows`          | Examples: `rows`, `products`                     |
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -553,6 +582,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageSizeParam: { 
        addToUrl: false
@@ -565,12 +595,13 @@ url: {
 www.example.com?
 ```
 ---
-### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+### Usecase 2: Default Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageSizeParam: { 
        addToUrl: true,
@@ -584,12 +615,13 @@ url: {
 www.example.com?rows=12
 ```
 ---
-### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+### Usecase 3: Custom Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageNoParam: { 
        addToUrl: true,
@@ -612,6 +644,7 @@ In this `sortParam` configuration, sorting preferences are managed effectively b
 **Sample Code**
 ```js
 url:{
+    seoFriendlyUrl: true, 
     // other URL configurations...
     sortParam: { 
         addToUrl: true,
@@ -630,8 +663,8 @@ url:{
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
-4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL.
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
+4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 ### Configurations
 {: .d-inline-block }
@@ -643,6 +676,8 @@ url:{
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Examples: `valueReplacer: { "price desc": "price desc", "price asc": "price asc" }`                                        |
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -654,6 +689,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     sortParam: { 
        addToUrl: false
@@ -666,12 +702,13 @@ url: {
 www.example.com?
 ```
 ---
-### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+### Usecase 2: Default Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     sortParam: { 
        addToUrl: true,
@@ -685,12 +722,13 @@ url: {
 www.example.com?sort=price%20desc
 ```
 ---
-### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+### Usecase 3: Custom Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     sortParam: { 
        addToUrl: true,
@@ -717,6 +755,7 @@ In this configuration, product view preferences are effectively managed by tailo
 **Sample Code**
 ```js
 url:{
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageViewParam: { 
         addToUrl: true,
@@ -735,8 +774,8 @@ url:{
 
 1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
-4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL.
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
+4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 ### Configurations
 {: .d-inline-block }
@@ -748,6 +787,8 @@ url:{
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: `valuesReplacer: { "GRID": "G", "LIST": "L" }`                      |
 
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 ### Usecases
 {: .d-inline-block }  
@@ -759,6 +800,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageViewParam: { 
        addToUrl: false
@@ -771,12 +813,13 @@ url: {
 www.example.com?
 ```
 ---
-### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+### Usecase 2: Default Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageViewParam: { 
        addToUrl: true,
@@ -790,12 +833,13 @@ url: {
 www.example.com?viewType=GRID
 ```
 ---
-### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+### Usecase 3: Custom Usecase.
 {: .no_toc  }
 
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl: true, 
     // other URL configurations...
     pageViewParam: { 
        addToUrl: true,
@@ -811,4 +855,165 @@ url: {
 **URL:**
 ```
 www.example.com?pageView=G
+```
+
+---
+
+## facetsParam
+
+facetsParam configurations gives user the flexibility to customize how selected facets string look in the url.
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+     facetsParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        multiValueSeparator: ",",
+        keyReplacer: {
+                "color_uFilter": "color",
+                "size_uFilter": "size"
+        },
+        valueReplacer: {
+                "color_uFilter": {
+                    "Multi_color": "multi",
+                },
+                "size_uFilter": {
+                    "xs": "extra-small"
+                }
+        },
+        facetsOrderInUrl: ["size","color_uFilter"],
+        rangeFacets: ["price"],
+        rangeSeparator: "-"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
+2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER. Different type of algo provides different kind of customization for the facets string in the url. 
+3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable. For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+6. `facetsOrderInUrl`: This config orders the facets among facets string in the url.
+7. `rangeFacets`: This is a **required** field if you have range facets. Declare all the range facets by passing them in this array. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has `"-"` as the rangeSeparator. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+
+### Configurations
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
+| `addToUrl`     | boolean  | `true`                                               | Allowed Values: `true` ,`false`|
+| `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER` |
+| `multiValueSeparator`  | string   | `,` | Allowed Values: `&`, `~`, `^`, `,`, `-`, `_`, `:`, `;`, `|`, `$`, `@` |
+| `keyReplacer`|  object  | No default - empty object |  Example: `keyReplacer: { "color_uFilter": "color" , "size_uFilter": "size" }` |
+| `valueReplacer`| object   | No default - emoty object| Example: `valueReplacer: {"size_uFilter": { "xs": "extra-small" } }`|
+| `facetsOrderInUrl`| array   | No default - empty array| Example: `facetsOrderInUrl: [ "color_uFilter", "size_uFilter", "gender_uFilter" ]` |
+| `rangeFacets`| array   | No default- empty array|  Example: `rangeFacets: [ "price", "salePrice" ]` | 
+| `rangeSeparator`| string   |  `-`  | Allowed Values: ["-"]|
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+### Usecase 1: Hide Facets Param in the URL.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=*
+```
+---
+### Usecase 2: Default Usecase.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "DEFAULT"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
+```
+---
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
+```
+---
+### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER",
+       multiValueSeparator: "~",
+       keyReplacer: {
+        "colour_uFilter" : "color",
+        "size_uFilter" : "size"
+       },
+       valueReplacer: {
+        "colour_uFilter": {
+            "Black" : "blk"
+        },
+        "size_uFilter" : {
+            "XS": "extra-small"
+        }
+       },
+       facetsOrderInUrl :["size_uFilter", "color_uFilter"],
+       rangeFacets: ["price"],
+       rangeSeparator: "-"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=*&size=extra-small&color=blk&price=0-300~300-600
 ```

@@ -133,6 +133,9 @@ seoFriendlyUrl: false
 1. true - The URLs will be well-structured, keyword-rich which enhances SEO by improving readability and search engine ranking.
 2. false - URLs will not be optimised, potentially impacting SEO and user experience due to less descriptive and organized URL structures.
 
+{: .note }
+> When `seoFriendlyUrl` is `true`, default configurations are applied in the URL. 
+
 ---
 
 ## orderOfQueryParams
@@ -492,7 +495,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?start=1
+www.example.com?page=1
 ```
 ---
 ### Usecase 4: Custom Usecase with Index as PageNo.
@@ -506,7 +509,7 @@ url: {
     pageNoParam: { 
        addToUrl: true,
        algo: "KEY_VALUE_REPLACER", 
-       keyReplacer: "page",
+       keyReplacer: "pageNumber",
        usePageNo: false
    }
 }
@@ -514,7 +517,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?page=0
+www.example.com?pageNumber=0
 ```
 ---
 ### Usecase 5: Custom Usecase with Page Numbers as PageNo.
@@ -528,7 +531,7 @@ url: {
     pageNoParam: { 
        addToUrl: true,
        algo: "KEY_VALUE_REPLACER", 
-       keyReplacer: "page",
+       keyReplacer: "pageNumber",
        usePageNo: true
    }
 }
@@ -536,7 +539,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?page=1
+www.example.com?pageNumber=1
 ```
 
 ---
@@ -792,7 +795,7 @@ url:{
 
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|-------------------|
-| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
+| `addToUrl`      | boolean  | `false`                                                | Allowed Values: `true`, `false`                 |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: `valuesReplacer: { "GRID": "G", "LIST": "L" }`                      |

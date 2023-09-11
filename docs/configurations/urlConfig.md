@@ -2,17 +2,17 @@
 layout: default
 title: URL
 parent: Configurations
-nav_order: 18
+nav_order: 17
 ---
 
 # SEO Friendly URLs
 {: .no_toc }
 
-This feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
+This SEO Friendly URLs feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
 
 
 {: .important }
-> SEO Friendly URL is available from `2.0.40` and above.  
+> This set of configurations (SEO Friendly URLs) are present in version `v2.1.0` and above.  
 
 
 # Table of contents
@@ -867,15 +867,12 @@ url: {
 ```
 www.example.com?pageView=G
 ```
-
 ---
 
 ## facetsParam
 
 facetsParam configurations gives user the flexibility to customize how selected facets string look in the url.
-
-{: .note }
-> `seoFriendlyUrl` must be **true** for this to work.
+This configuration is only available when the `seoFriendlyUrl` flag is turned on.
 
 **Sample Code**
 ```js
@@ -908,35 +905,41 @@ url:{
 {: .d-inline-block }
 
 1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
-2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER. Different type of algo provides different kind of customization for the facets string in the url. 
+2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER . Different type of algo provides different kind of customization for the facets string in  the url. 
 3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
-4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable. For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
-5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
-6. `facetsOrderInUrl`: This config orders the facets among facets string in the url.
-7. `rangeFacets`: This is a **required** field if you have range facets. Declare all the range facets by passing them in this array. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
-8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has `"-"` as the rangeSeparator. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable.For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url .This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+6. `facetsOrderInUrl`: This config orders the facets among facets string in the url .
+7. `rangeFacets`: This is a `required` field if you have range facets. Declare all the range facets by passing them in this array.This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has "-" as the rangeSeparator.This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+
 
 ### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
-|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
+|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
 | `addToUrl`     | boolean  | `true`                                               | Allowed Values: `true` ,`false`|
 | `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER` |
-| `multiValueSeparator`  | string   | `,` | Allowed Values: `&`, `~`, `^`, `,`, `-`, `_`, `:`, `;`, `|`, `$`, `@` |
-| `keyReplacer`|  object  | No default - empty object |  Example: `keyReplacer: { "color_uFilter": "color" , "size_uFilter": "size" }` |
-| `valueReplacer`| object   | No default - empty object| Example: `valueReplacer: {"size_uFilter": { "xs": "extra-small" } }`|
-| `facetsOrderInUrl`| array   | No default - empty array| Example: `facetsOrderInUrl: [ "color_uFilter", "size_uFilter", "gender_uFilter" ]` |
-| `rangeFacets`| array   | No default- empty array|  Example: `rangeFacets: [ "price", "salePrice" ]` | 
-| `rangeSeparator`| string   |  `-`  | Allowed Values: ["-"]|
+| `multiValueSeparator`  | string   | `,` | Allowed Values:`&`, `~`, `^`, `,`, `-`, `_`, `:`, `;`, `|`, `$`, `@` |
+| `keyReplacer`|  object  | No default - empty object |  Example: { "color_uFilter": "color" , "size_uFilter": "size"} |
+| `valueReplacer`| object   | No default - emoty object| Example: {"size_uFilter": { "xs": "extra-small"}}|
+| `facetsOrderInUrl`| array   | No default - empty array| Example: ["color_uFilter","size_uFilter","gender_uFilter"] |
+| `rangeFacets`| array   | No default- empty array|  Example: ["price", "salePrice"] | 
+| `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
 
+---
+
+{: .important }
+> If the value given by the user is not an allowed value, the default value will be selected.
+> `multiValueSeparator` and `queryParamSeparator` values cannot be same.
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-### Usecase 1: Hide Facets Param in the URL.
-{: .no_toc  }
+### Usecase 1: Hide facets in the url.
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -955,7 +958,7 @@ www.example.com?q=*
 ```
 ---
 ### Usecase 2: Default Usecase.
-{: .no_toc  }
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -975,7 +978,7 @@ www.example.com?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%2
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
-{: .no_toc  }
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -995,7 +998,7 @@ www.example.com?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price
 ```
 ---
 ### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
-{: .no_toc  }
+{: .d-inline-block .no_toc }
 
 **Code:**
 ```js
@@ -1029,3 +1032,7 @@ url: {
 ```
 www.example.com?q=*&size=extra-small&color=blk&price=0-300~300-600
 ```
+---
+
+
+

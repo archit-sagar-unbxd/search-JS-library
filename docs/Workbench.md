@@ -75,6 +75,7 @@ The Workbench can be used to debug any issues related to the customer's configur
 - Check the search API payload and response. Check if there are any extra parameters in the payload/config.
 - Check if any errors are thrown by the SDK in the errors dropdown. In case there are any errors, the exact module and and configuration which produces this error is mentioned.
 - Check if there are any overwritings for the SDK methods. If yes, check if the configurations work without the overwritings.
+- If the issue still persists, please inform the same to the SDK team.
 
 ---
 

@@ -36,7 +36,7 @@ function renderSingleSelectMode(facet, selectedCategories, facetSearchTxt, facet
             let lTid = `data-test-id="${UNX_facetLevel}${level}"`;
             const levelCss = `${multiLevelFacetSelectorClass}  UNX-category-level-${level}`
             ui += [`<button ${lTid} data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
-            `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter">`,
+            `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter" style="padding-left:${level * 5}px;">`,
             `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
                 `</button>`].join('')
         })
@@ -63,10 +63,9 @@ function renderSingleSelectMode(facet, selectedCategories, facetSearchTxt, facet
         }
         return [`<button ${lTid} data-parent="${multiLevelField}" data-level="${level}"`,
         `class="${multiLevelFacetSelectorClass} ${levelCss} ${itemFacetClass} ${lastCategoryValue === name ? "UNX-selected-crumb" : ""}" data-name="${dataId}" data-action = "setCategoryFilter">`,
-        `<label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
+        `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
     })
-    // console.log("selectedCategories", selectedCategories, isLastCategoryInValues);
-    ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`
+    ui += `<div class="UNX-category-values ${ui.length > 0 ? "UNX-category-children" : ""}">${valueUI.join('')}</div>`
     if (ui !== "") {
         return [`<div class="UNX-multi-facet-wrap">`,
             `${ui}</div>`].join('')
@@ -154,6 +153,10 @@ function renderMultiSelectMode(facet, selectedCategories, facetSearchTxt, facetC
             .filter(Boolean)
             .join(" ");
 
+        const dataAction = shouldHighlight
+            ? "clearCategoryFilter"
+            : "setCategoryFilter";
+
         const lTid = `data-test-id="${UNX_facetLevel}${currentLevel}"`;
 
         return `
@@ -164,18 +167,19 @@ function renderMultiSelectMode(facet, selectedCategories, facetSearchTxt, facetC
                     data-level="${currentLevel}"
                     data-name="${fullPath}"
                     class="${buttonClasses}"
-                    data-action="setCategoryFilter"
+                    data-action="${dataAction}"
                 >
+                    <span class="UNX-category-icon"></span>
                     <label class="UNX-facet-text">${value}</label>
                     <label class="UNX-facet-count">(${count})</label>
                 </button>
 
                 ${hasVisibleChildren
                 ? `
-                            <div class="UNX-category-children UNX-category-level-${currentLevel + 1}">
-                                ${renderedChildren}
-                            </div>
-                        `
+                    <div class="UNX-category-children UNX-category-level-${currentLevel + 1}">
+                        ${renderedChildren}
+                    </div>
+                `
                 : ""
             }
             </div>

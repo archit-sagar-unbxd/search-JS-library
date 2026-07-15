@@ -83,6 +83,10 @@ const multilevelMultiselectFacetUI = function (
             .filter(Boolean)
             .join(" ");
 
+        const dataAction = shouldHighlight
+            ? "clearCategoryFilter"
+            : "setCategoryFilter";
+
         const lTid = `data-test-id="${UNX_facetLevel}${currentLevel}"`;
 
         return `
@@ -93,8 +97,9 @@ const multilevelMultiselectFacetUI = function (
                     data-level="${currentLevel}"
                     data-name="${fullPath}"
                     class="${buttonClasses}"
-                    data-action="setCategoryFilter"
+                    data-action="${dataAction}"
                 >
+                    <span class="UNX-category-icon"></span>
                     <label class="UNX-facet-text">${value}</label>
                     <label class="UNX-facet-count">(${count})</label>
                 </button>

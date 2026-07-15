@@ -223,6 +223,12 @@ body {
   padding-top: 10px;
   max-height: 500px;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.UNX-facet-item-d::-webkit-scrollbar {
+  display: none;
 }
 
 .UNX-facet-open:after {
@@ -248,11 +254,13 @@ body {
 }
 
 .UNX-category-icon {
-  display: none;
+  flex-shrink: 0;
+  min-width: 10px;
+  margin-right: 2.5px;
 }
 
-.UNX-selected-crumb .UNX-category-icon:before {
-  display: none;
+.UNX-selected-crumb .UNX-category-icon {
+  transform: rotate(90deg);
 }
 
 .UNX-multilevel-block .UNX-facet-text {
@@ -1162,24 +1170,11 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
 }
 
 .UNX-multilevel-facet::before {
-  content: " ";
-  min-height: 11px;
-  min-width: 11px;
-  max-height: 11px;
-  max-width: 11px;
-  display: inline-block;
-  background: url('./sprite.svg') no-repeat -18px -966px;
-	width: 11px;
-	height: 11px;
-  scale: 0.8;
+  display: none;
 }
 
-.UNX-multilevel-facet.UNX-selected-crumb::before {
-  background: url('./sprite.svg') no-repeat -573px -875px;
-	width: 7px;
-	height: 2px;
-  margin: 8px -2px 0 2px;
-  scale: 1;
+.UNX-selected-crumb .UNX-category-icon:before {
+  color: #577ede;
 }
 
 .UNX-selected-crumb {
@@ -1747,8 +1742,10 @@ left: 0 !important;
 
 .search-preview .UNX-img-block {
   max-width: 100%;
-  height: auto;
+  height: 250px;
+  max-height: 250px;
   min-height: 250px;
+  object-fit: contain;
 }
 
 .UNX-change-products {

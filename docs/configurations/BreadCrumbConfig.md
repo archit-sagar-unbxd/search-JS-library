@@ -208,7 +208,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ```js
 breadcrumb:{
   enabled:true,
-  el: document.getElementById("breadcrumpContainer"),
+  el: document.getElementById("breadcrumbContainer"),
   selectorClass:"UNX-bread-crumb",
   template:function(breadcrumbs, breadcrumb){
     let ui = ``;

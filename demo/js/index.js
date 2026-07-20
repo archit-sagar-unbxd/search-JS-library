@@ -8,7 +8,7 @@ let routeTemplate = `
 			<div class="UNX-header-inner">
 				<a href="/"><img src=${def} class="UNX-header-logo"></img></a>
 				<nav id="categoryLinks" class="UNX-nav UNX-naviagtion-wrap">
-					<button data-id="categoryPath:'Men'" class="nav-links" data-path="/men">Men</a>
+					<button data-id='categoryPath:"Office Supplies>Binders & Accessories>Binders"' class="nav-links" data-path="/men">Office Supplies>Binders & Accessories>Binders</a>
                     <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
                     <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing machines</button>
                     <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention micro ovens</button>
@@ -124,7 +124,7 @@ let routeTemplate = `
 					<div class="UNX-footer-info-column">
 						<h6 class="UNX-footer-info-head">Online Shopping</h6>
 						<div class="UNX-link-wrapper">
-							<a href="#">Men</a>
+							<a href="#">Office Supplies>Binders & Accessories>Binders</a>
 							<a href="#">Women</a>
 							<a href="#">Kids</a>
 							<a href="#">Home & Living</a>
@@ -286,7 +286,7 @@ btnEls.forEach((item) => {
 let performRouteActions = () => {
 	if (location.pathname === "/men") {
 		window.UnbxdAnalyticsConf = {
-			page: 'categoryPath:"Men"',
+			page: 'categoryPath:"Office Supplies>Binders & Accessories>Binders"',
 		};
 		window.unbxdSearch.options.productType = "CATEGORY";
 	} else if (location.pathname === "/women") {
@@ -359,7 +359,7 @@ let productType = "";
 
 if (location.pathname === "/men") {
 	window.UnbxdAnalyticsConf = {
-		page: 'categoryPath:"Men"',
+		page: 'categoryPath:"Office Supplies>Binders & Accessories>Binders"',
 	};
 	productType = "CATEGORY";
 } else if (location.pathname === "/women") {
@@ -445,12 +445,17 @@ window.unbxdSearch = new UnbxdSearch({
 			}
 
 			if (fullPath) {
-				self.state.categoryFilter[facetName] = fullPath
-					.split(">")
-					.map((value) => value && value.trim())
-					.filter(Boolean);
+				// Store the raw browse string (e.g. 'categoryPath:"Men>Shoes"')
+				const browseValue = `${facetName}:"${fullPath}"`;
+				self.state.categoryFilter[facetName] = browseValue;
+				if (window.UnbxdAnalyticsConf) {
+					window.UnbxdAnalyticsConf.page = browseValue;
+				}
 			} else {
 				delete self.state.categoryFilter[facetName];
+				if (window.UnbxdAnalyticsConf) {
+					window.UnbxdAnalyticsConf.page = '';
+				}
 			}
 
 			self.setPageStart(0);

@@ -24,7 +24,8 @@ const multilevelMultiselectFacetUI = function (
         multiLevelField = filterField;
     }
 
-    const selectedPaths = (this.state.categoryFilter[facetName] || []).filter(Boolean)
+    const selectedFacetEntries = (this.getSelectedFacets() || {})[facetName] || [];
+    const selectedPaths = selectedFacetEntries.map(e => e.dataId || e.name).filter(Boolean);
 
     const searchText = facetSearchTxt?.trim().toLowerCase();
 

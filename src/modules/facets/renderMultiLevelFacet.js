@@ -20,8 +20,21 @@ export default function(bucketedFacet = {}, isExpanded) {
             isCollapsible
         } = facet;
         let valueUI = "";
-        const breadCrumb = this.getBreadCrumbsList(facetName) || [];
         const facetMultilevelMultiSelect = self.options?.facet?.facetMultilevelMultiSelect || false;
+
+        // Derive the currently-selected path crumbs from selectedFacets for the facet widget.
+        // (getBreadCrumbsList is reserved for the breadcrumb bar and uses the browse categoryFilter.)
+        const selectedFacetEntries = (this.getSelectedFacets() || {})[facetName] || [];
+        const selectedPath = selectedFacetEntries.length
+            ? (selectedFacetEntries[0].dataId || selectedFacetEntries[0].name || '')
+            : '';
+        const breadCrumb = selectedPath
+            ? selectedPath.split('>').map((value, i) => ({
+                level: i + 1,
+                filterField: facetName,
+                value
+            }))
+            : [];
 
         // User provided config should always take precedence.
         // If no custom template is provided, fall back to SDK defaults.

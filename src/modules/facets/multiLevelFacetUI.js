@@ -23,6 +23,7 @@ function renderSingleSelectMode(facet, selectedCategories, facetSearchTxt, facet
         values,
         filterField
     } = facet;
+    console.log("this.state", this.state);
     const lastCategoryValue = selectedCategories[selectedCategories.length - 1]?.value;
     const isLastCategoryInValues = values.some(item => item.value === lastCategoryValue);
     const finalCategories = isLastCategoryInValues ? selectedCategories.filter(item => item.value !== lastCategoryValue) : selectedCategories;
@@ -95,7 +96,8 @@ function renderMultiSelectMode(facet, selectedCategories, facetSearchTxt, facetC
         multiLevelField = filterField;
     }
 
-    const selectedPaths = (this.state.categoryFilter[facetName] || []).filter(Boolean);
+    const selectedFacetEntries = (this.getSelectedFacets() || {})[facetName] || [];
+    const selectedPaths = selectedFacetEntries.map(e => e.dataId || e.name).filter(Boolean);
     const searchText = facetSearchTxt?.trim().toLowerCase();
 
     const renderNode = (
